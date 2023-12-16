@@ -1,0 +1,19 @@
+{
+  "name": "chess-experiments",
+  "version": "1.0.0",
+  "description": "experimenting with chessground (presentation &amp; interactability) and chess.js (move validation) using snabbdom (virtual dom library)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node .build/watch.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "0.19.9"
+  },
+  "dependencies": {
+    "snabbdom": "^3.5.1"
+  }
+}
