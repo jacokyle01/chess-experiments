@@ -1,9 +1,8 @@
 import { Api } from "chessground/api";
 import { Redraw } from "./interfaces";
-import { Chess} from "chess.js";
-import { Color, Key} from "chessground/types";
-import { Chessground } from "chessground";
-import { toColor } from "./util";
+import { Chess } from "chess.js";
+import { Color, Key } from "chessground/types";
+import { toColor, toDests } from "./util";
 
 export default class Ctrl {
 	oriented: Color;
@@ -13,7 +12,7 @@ export default class Ctrl {
 	constructor(readonly redraw: Redraw) {}
 
 	initializeCg = () => {
-        console.log("initialized")
+		console.log("initialized");
 		this.chessground.set({
 			movable: {
 				events: { after: this.playOtherSide(this.chessground, this.chess) },
@@ -23,14 +22,17 @@ export default class Ctrl {
 
 	playOtherSide = (cg: Api, chess: Chess) => {
 		return (orig: Key, dest: Key) => {
-            console.log(chess.ascii());
-			chess.move({from: orig, to: dest});
-            cg.set({
-                turnColor: toColor(chess),
-                movable: {
-                  color: toColor(chess),
-                }
-              });
+			console.log(chess.ascii());
+			chess.move({ from: orig, to: dest });
+			cg.set({
+				turnColor: toColor(chess),
+				movable: {
+					color: toColor(chess),
+
+					dests: toDests(chess),
+					free: false,
+				},
+			});
 		};
 	};
 
