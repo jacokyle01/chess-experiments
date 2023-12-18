@@ -13,7 +13,16 @@ export default class Ctrl {
 
     flip = () => {
         this.color = (this.color == "white" ? "black" : "white");
-        this.chessground.set({orientation: this.color})
+        this.chessground?.set({orientation: this.color})
         this.redraw();
+    }
+
+    fen = (): string => {
+        return this.chessground?.getFen();
+    }
+
+    handleMove = () => {
+        this.redraw();
+        //simple for now 
     }
 }

@@ -5,7 +5,10 @@ import { Config } from "chessground/config";
 
 function makeConfig(ctrl: Ctrl): Config {
 	return {
-        coordinates: true
+        coordinates: true,
+        events: {
+            move: ctrl.handleMove
+        }
 	};
 }
 
@@ -32,10 +35,17 @@ const flip = (ctrl: Ctrl): VNode => {
 	);
 };
 
+const fen = (ctrl: Ctrl): VNode => {
+    return h(
+        "h2#fen", ctrl.fen()
+    )
+}
+
 const view = (ctrl: Ctrl) => {
 	return h("div#main-wrap", [
 		h("div", chessground(ctrl)),
 		flip(ctrl),
+        fen(ctrl)
 	]);
 };
 
