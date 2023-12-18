@@ -167,4 +167,13 @@
   .cg-wrap coords.ranks coord {
     transform: translateY(39%);
   }
+
+  #flip {
+    background-color: blue;
+    max-height: 100px;
+  }
   
+  #main-wrap {
+    display: flex;
+    
+  }

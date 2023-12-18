@@ -2,13 +2,19 @@ import { VNode, h } from "snabbdom";
 import Ctrl from "./ctrl";
 import { Chessground } from "chessground";
 import { Config } from "chessground/config";
+import { Chess } from "chess.js"
+
+//TODO refactor chessground/chessjs logic out of view. only have presentation code here, not config stuff
 
 function makeConfig(ctrl: Ctrl): Config {
 	return {
         coordinates: true,
         events: {
-            move: ctrl.handleMove
-        }
+            move: ctrl.handleMove,
+        },
+		movable: {
+			color: "white"
+		}
 	};
 }
 
@@ -19,6 +25,7 @@ const chessground = (ctrl: Ctrl): VNode => {
 				insert: (vnode) => {
 					const el = vnode.elm as HTMLElement;
 					ctrl.chessground = Chessground(el, makeConfig(ctrl));
+					ctrl.initializeCg();
 				},
 			},
 		}),
